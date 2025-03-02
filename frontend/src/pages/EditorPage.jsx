@@ -60,7 +60,7 @@ const EditorPage = () => {
                 username: username
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
     }
 
@@ -102,7 +102,7 @@ const EditorPage = () => {
             setMessage('');
             messageInputRef.current.focus();
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
     }
 
@@ -116,7 +116,7 @@ const EditorPage = () => {
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`
             });
         } catch (error) {
-            toast.error(error);
+            navigate('/');
         }
     }
 
@@ -131,7 +131,7 @@ const EditorPage = () => {
 
             navigate('/');
         } catch (error) {
-            toast.error(error);
+            navigate('/');
         }
     }
 
@@ -144,7 +144,7 @@ const EditorPage = () => {
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
     }, []);
 
@@ -155,7 +155,7 @@ const EditorPage = () => {
                 toast(`${data.username} joined the room`);
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -163,7 +163,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("new_user_joined");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
@@ -175,7 +175,7 @@ const EditorPage = () => {
                 toast(`${data.username} left the room`);
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -183,7 +183,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("user_left");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
@@ -197,7 +197,7 @@ const EditorPage = () => {
                 });
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -205,7 +205,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("receive_message");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
@@ -218,7 +218,7 @@ const EditorPage = () => {
                 setWhoIsTyping(data.username);
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -226,7 +226,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("someone_typing");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
@@ -239,7 +239,7 @@ const EditorPage = () => {
                 setWhoIsTyping('');
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -247,7 +247,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("stop_typing");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
@@ -260,7 +260,7 @@ const EditorPage = () => {
                 toast(data.message);
             });
         } catch (error) {
-            toast.error(error.message);
+            navigate('/');
         }
 
         return () => {
@@ -268,7 +268,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("code_change");
             } catch (error) {
-                toast.error(error.message);
+                navigate('/');
             }
         }
     }, []);
