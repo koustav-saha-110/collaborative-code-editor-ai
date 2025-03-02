@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getSocket } from '../socket/socket.server';
+import { disconnectSocket, getSocket } from '../socket/socket.server';
 import { Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -60,6 +60,7 @@ const EditorPage = () => {
                 username: username
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
     }
@@ -102,6 +103,7 @@ const EditorPage = () => {
             setMessage('');
             messageInputRef.current.focus();
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
     }
@@ -116,6 +118,7 @@ const EditorPage = () => {
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
     }
@@ -131,6 +134,7 @@ const EditorPage = () => {
 
             navigate('/');
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
     }
@@ -144,6 +148,7 @@ const EditorPage = () => {
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
     }, []);
@@ -155,6 +160,7 @@ const EditorPage = () => {
                 toast(`${data.username} joined the room`);
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -163,6 +169,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("new_user_joined");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
@@ -175,6 +182,7 @@ const EditorPage = () => {
                 toast(`${data.username} left the room`);
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -183,6 +191,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("user_left");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
@@ -197,6 +206,7 @@ const EditorPage = () => {
                 });
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -205,6 +215,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("receive_message");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
@@ -218,6 +229,7 @@ const EditorPage = () => {
                 setWhoIsTyping(data.username);
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -226,6 +238,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("someone_typing");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
@@ -239,6 +252,7 @@ const EditorPage = () => {
                 setWhoIsTyping('');
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -247,6 +261,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("stop_typing");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
@@ -260,6 +275,7 @@ const EditorPage = () => {
                 toast(data.message);
             });
         } catch (error) {
+            disconnectSocket();
             navigate('/');
         }
 
@@ -268,6 +284,7 @@ const EditorPage = () => {
                 const socket = getSocket();
                 socket.off("code_change");
             } catch (error) {
+                disconnectSocket();
                 navigate('/');
             }
         }
